@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "crystaloptimizer",
+  "version": "1.0",
+  "name": "Crystal Optimizer",
+  "description": "Optimizes crystal growth on servers",
+  "authors": ["CrystalTeam"],
+  "entrypoints": {
+    "main": ["net.crystal.optimizer.CrystalOptimizerMod"]
+  },
+  "mixins": ["crystaloptimizer.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "1.21.1",
+    "fabric-api": ">=0.100.0"
+  }
+}
