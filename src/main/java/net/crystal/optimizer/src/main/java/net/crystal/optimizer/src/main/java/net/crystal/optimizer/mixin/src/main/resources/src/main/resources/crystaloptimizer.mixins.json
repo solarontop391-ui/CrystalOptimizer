@@ -1,0 +1,9 @@
+{
+  "required": true,
+  "package": "net.crystal.optimizer.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": ["CrystalSpeedMixin"],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
