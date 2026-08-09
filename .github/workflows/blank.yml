@@ -18,8 +18,9 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         
-    - name: Create gradle wrapper files
+    - name: Build directly with Gradle
       run: |
+        # Create minimal gradle wrapper
         mkdir -p gradle/wrapper
         echo "distributionBase=GRADLE_USER_HOME" > gradle/wrapper/gradle-wrapper.properties
         echo "distributionPath=wrapper/dists" >> gradle/wrapper/gradle-wrapper.properties
@@ -31,9 +32,9 @@ jobs:
         echo 'exec java -cp "$(dirname "$0")/gradle/wrapper/gradle-wrapper.jar" org.gradle.wrapper.GradleWrapperMain "$@"' >> gradlew
         chmod +x gradlew
         
-    - name: Build with Gradle
-      run: ./gradlew build
-      
+        # Build
+        ./gradlew build --no-daemon
+        
     - name: Upload JAR
       uses: actions/upload-artifact@v4
       with:
