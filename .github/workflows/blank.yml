@@ -18,7 +18,7 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         
-    - name: Generate Gradle wrapper
+    - name: Create gradle wrapper files
       run: |
         mkdir -p gradle/wrapper
         echo "distributionBase=GRADLE_USER_HOME" > gradle/wrapper/gradle-wrapper.properties
@@ -26,16 +26,10 @@ jobs:
         echo "distributionUrl=https://services.gradle.org/distributions/gradle-8.5-bin.zip" >> gradle/wrapper/gradle-wrapper.properties
         echo "zipStoreBase=GRADLE_USER_HOME" >> gradle/wrapper/gradle-wrapper.properties
         echo "zipStorePath=wrapper/dists" >> gradle/wrapper/gradle-wrapper.properties
-        
-    - name: Create gradlew
-      run: |
+        curl -L -o gradle/wrapper/gradle-wrapper.jar https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar
         echo '#!/bin/sh' > gradlew
         echo 'exec java -cp "$(dirname "$0")/gradle/wrapper/gradle-wrapper.jar" org.gradle.wrapper.GradleWrapperMain "$@"' >> gradlew
         chmod +x gradlew
-        
-    - name: Download gradle-wrapper.jar
-      run: |
-        curl -L -o gradle/wrapper/gradle-wrapper.jar https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar
         
     - name: Build with Gradle
       run: ./gradlew build
